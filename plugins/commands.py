@@ -56,7 +56,7 @@ if Config.DATABASE_URI:
 HOME_TEXT = "<b>Hey  [{}](tg://user?id={}) 🙋‍♂️\n\nIam A Bot Built To Play or Stream Videos In Telegram VoiceChats.\nI Can Stream Any YouTube Video Or A Telegram File Or Even A YouTube Live.</b>"
 admin_filter=filters.create(is_admin) 
 
-@Client.on_message(filters.command(['start', f"start@{Config.BOT_USERNAME}"]))
+@Client.on_message(filters.command(['start', f"start@{Config.BOT_USERNAME}"])& admin_filter)
 async def start(client, message):
     if len(message.command) > 1:
         if message.command[1] == 'help':
@@ -143,7 +143,7 @@ async def start(client, message):
 
 
 
-@Client.on_message(filters.command(["help", f"help@{Config.BOT_USERNAME}"]))
+@Client.on_message(filters.command(["help", f"help@{Config.BOT_USERNAME}"])& admin_filter)
 async def show_help(client, message):
     reply_markup=InlineKeyboardMarkup(
         [
